@@ -14,7 +14,24 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult CreateUser([FromBody] UserDto.CreateUserDto createUserDto)
     {
+        if (createUserDto.Age < 14)
+        {
+            return BadRequest("The age must be at least 14 year old");
+        }
+
+        if (createUserDto.Name.Length == 0)
+        {
+            return BadRequest("Username field must be not null");
+        }
+
+        if (createUserDto.Id == Guid.Empty)
+        {
+            createUserDto.Id = Guid.NewGuid();
+        }
+
+
         UsersStore.UsersList.Add(createUserDto);
-        return Ok();
+
+        return CreatedAtAction(nameof(CreateUser), new { id = createUserDto.Id }, createUserDto);
     }
 }

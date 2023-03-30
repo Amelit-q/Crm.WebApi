@@ -25,6 +25,8 @@ public class UserDto
 
     public class CreateUserDto
     {
+        public Guid Id { get; set; }
+        
         [Required, MaxLength(228)] public string Name { get; set; }
 
         [Required] public int Age { get; set; }
