@@ -1,7 +1,5 @@
 using Crm.WebApi.Data;
 using Crm.WebApi.Models.Dto;
-using Crm.WebApi.Validation;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crm.WebApi.Controllers;
