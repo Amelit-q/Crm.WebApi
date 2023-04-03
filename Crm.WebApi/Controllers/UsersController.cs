@@ -1,6 +1,7 @@
 using Crm.WebApi.Data;
 using Crm.WebApi.Models.Dto;
 using Crm.WebApi.Validation;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crm.WebApi.Controllers;
@@ -15,14 +16,24 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult CreateUser([FromBody] UserDto.CreateUserDto createUserDto)
     {
-        if (createUserDto.Id == Guid.Empty)
+        if (!ModelState.IsValid)
         {
-            createUserDto.Id = Guid.NewGuid();
+            return BadRequest(ModelState);
         }
 
+        var user = new UserDto.CreateUserDto
+        {
+            Id = Guid.NewGuid(),
+            Age = createUserDto.Age,
+            Description = createUserDto.Description,
+            Location = createUserDto.Location,
+            Name = createUserDto.Name,
+            DateCreated = DateTime.Now,
+        };
 
-        UsersStore.UsersList.Add(createUserDto);
 
-        return CreatedAtAction(nameof(CreateUser), new { id = createUserDto.Id }, createUserDto);
+        UsersStore.UsersList.Add(user);
+
+        return Ok(user);
     }
 }
