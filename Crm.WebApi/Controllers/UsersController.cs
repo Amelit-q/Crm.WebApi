@@ -35,4 +35,14 @@ public class UsersController : ControllerBase
 
         return Ok(user);
     }
+
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult GetUsers()
+    {
+        var entities = UsersStore.UsersList.AsEnumerable();
+        return Ok(entities);
+    }
 }

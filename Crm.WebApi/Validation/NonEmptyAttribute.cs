@@ -22,6 +22,6 @@ public class NotEmptyAttribute : ValidationAttribute
             int intValue when intValue == 0 => false,
             // Guid guidValue when guidValue == Guid.Empty => false,
             DateTime dateTime when dateTime == EmptyDateTime => false,
-            _ => false
+            _ => true
         };
 }

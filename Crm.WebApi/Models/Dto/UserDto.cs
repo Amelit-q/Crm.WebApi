@@ -28,22 +28,18 @@ public class UserDto
     {
         public Guid Id { get; set; }
 
-        // [NotEmpty]
-        [Required]
+        [NotEmpty]
         [MinLength(4)]
         [MaxLength(228)]
         public string Name { get; set; }
 
-        [Required]
-        // [NotEmpty]
+        [NotEmpty]
         [Range(14, 100,
             ErrorMessage = "The age requirement is a minimum of 14 years old and a maximum of 100 years old")]
         public int Age { get; set; }
 
-        // [NotEmpty]
-        [Required] [MaxLength(228)] public string Location { get; set; }
+        [NotEmpty] [MaxLength(228)] public string Location { get; set; }
 
-        // [NotEmpty]
         public DateTime CreatedAt { get; set; }
 
         public string Description { get; set; }

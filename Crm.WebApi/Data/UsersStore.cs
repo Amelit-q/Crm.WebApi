@@ -9,10 +9,12 @@ public static class UsersStore
         new UserDto.CreateUserDto
         {
             Age = 33, Description = "Random description for the random user", Name = "Random Name", Location = "Moscow",
+            Id = new Guid(),
         },
         new UserDto.CreateUserDto
         {
             Age = 22, Description = "Random description for another random user", Name = "Another Random Name",
+            Id = new Guid(),
             Location = "Leningrad",
         },
     };
