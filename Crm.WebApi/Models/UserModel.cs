@@ -8,7 +8,7 @@ public class UserModel
 
     public int Age { get; set; }
 
-    public DateTime DateCreated { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     public DateTime DateModified { get; set; }
 

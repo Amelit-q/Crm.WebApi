@@ -19,6 +19,7 @@ public class UsersController : ControllerBase
             return BadRequest(ModelState);
         }
 
+
         var user = new UserDto.CreateUserDto
         {
             Id = Guid.NewGuid(),
@@ -26,7 +27,7 @@ public class UsersController : ControllerBase
             Description = createUserDto.Description,
             Location = createUserDto.Location,
             Name = createUserDto.Name,
-            DateCreated = DateTime.Now,
+            CreatedAt = DateTime.UtcNow
         };
 
 

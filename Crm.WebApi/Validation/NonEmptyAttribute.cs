@@ -19,6 +19,7 @@ public class NotEmptyAttribute : ValidationAttribute
             null => false,
             string stringValue when string.IsNullOrEmpty(stringValue) => false,
             Guid guidValue when guidValue == EmptyId => false,
+            int intValue when intValue == 0 => false,
             // Guid guidValue when guidValue == Guid.Empty => false,
             DateTime dateTime when dateTime == EmptyDateTime => false,
             _ => false
