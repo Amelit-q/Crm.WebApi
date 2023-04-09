@@ -9,17 +9,10 @@ namespace Crm.WebApi.Controllers;
 public class UsersController : ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult CreateUser([FromBody] UserDto.CreateUserDto createUserDto)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-
         var user = new UserDto.CreateUserDto
         {
             Id = Guid.NewGuid(),
@@ -38,11 +31,10 @@ public class UsersController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetUsers()
     {
-        var entities = UsersStore.UsersList.AsEnumerable();
+        var entities = UsersStore.UsersList.ToList();
         return Ok(entities);
     }
 }
